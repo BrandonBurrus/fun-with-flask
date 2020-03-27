@@ -24,13 +24,12 @@ def index():
     todo_content = request.form['content']
     if (len(todo_content) > 0):
       new_todo = Todo(content=todo_content)
-
       try:
         db.session.add(new_todo)
         db.session.commit()
-        return redirect('/')
       except:
-        return redirect('/')
+        # TODO: Add err page
+        pass
     return redirect('/')
   else:
     todos = Todo.query.order_by(Todo.date_created).all()
@@ -42,10 +41,24 @@ def delete(id):
   try:
     db.session.delete(todo)
     db.session.commit()
-    return redirect('/')
   except:
-    return redirect('/')
+    # TODO: Add err page
+    pass
+  return redirect('/')
 
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update(id):
+  todo = Todo.query.get_or_404(id)
+  if (request.method == 'POST'):
+    todo.content = request.form['content']
+    try:
+      db.session.commit()
+    except:
+      # TODO: Add err page
+      pass
+    return redirect('/')
+  else:
+    return render_template('update.jinja', todo=todo)
 
 if __name__ == "__main__":
   app.run(debug=True)

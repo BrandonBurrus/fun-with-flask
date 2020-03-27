@@ -1,0 +1,26 @@
+{% extends 'root.jinja' %}
+
+{% block head %}
+<title>Updating Todo 📝</title>
+{% endblock %}
+
+{% block body %}
+<form class="row mb-4" action="/update/{{ todo.id }}" method="POST">
+  <div class="col-12 mb-2">
+    <h3>Update the to-do</h3>
+  </div>
+  <div class="col-md-6">
+    <input type="text" name="content" id="update-input" value="{{ todo.content }}" class="form-control" />
+  </div>
+  <div class="col-md-6">
+    <button type="submit" class="btn btn-primary">
+      <span>Update</span>
+      <span class="fa fa-edit"></span>
+    </button>
+    <a href="/" class="btn btn-outline-secondary">
+      <span>Back</span>
+      <span class="fas fa-arrow-circle-right"></span>
+    </a>
+  </div>
+</form>
+{% endblock %}
