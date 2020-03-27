@@ -30,8 +30,8 @@
         <tr>
           <td>{{ todo.content }}</td>
           <td>
-            <button type="button" class="btn border-0 btn-outline-info">Edit <span class="fa fa-edit"></span></button>
-            <button type="button" class="btn border-0 btn-outline-danger">Delete <span class="fa fa-trash"></span></button>
+            <a href="#" class="btn border-0 btn-outline-info">Edit <span class="fa fa-edit"></span></a>
+            <a href="/delete/{{ todo.id }}" class="btn border-0 btn-outline-danger">Delete <span class="fa fa-trash"></span></a>
           </td>
         </tr>
       {% endfor %}

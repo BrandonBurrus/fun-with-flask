@@ -36,5 +36,16 @@ def index():
     todos = Todo.query.order_by(Todo.date_created).all()
     return render_template('index.jinja', todos=todos)
 
+@app.route('/delete/<int:id>')
+def delete(id):
+  todo = Todo.query.get_or_404(id)
+  try:
+    db.session.delete(todo)
+    db.session.commit()
+    return redirect('/')
+  except:
+    return redirect('/')
+
+
 if __name__ == "__main__":
   app.run(debug=True)
