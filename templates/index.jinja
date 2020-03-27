@@ -9,10 +9,10 @@
   <div class="col-12">
     <h1 class="mb-4">To-do 📝</h1>
   </div>
-  <form class="mb-4">
+  <form class="mb-4" action="/" method="POST">
     <div class="col-md-6">
       <div class="form-group">
-        <input type="text" class="form-control" id="todo-input" aria-describedby="todo-item-help" placeholder="Add your todo...">
+        <input type="text" name="content" class="form-control" id="todo-input" aria-describedby="todo-item-help" placeholder="Add your todo...">
         <small id="todo-item-help" class="form-text text-muted">Enter the item that you want to add to your to-do list.</small>
       </div>
     </div>
@@ -24,10 +24,17 @@
     <table class="table">
       <tr>
         <th>To-do Items</th>
+        <th>Actions</td>
       </tr>
-      <tr>
-
-      </tr>
+      {% for todo in todos %}
+        <tr>
+          <td>{{ todo.content }}</td>
+          <td>
+            <button type="button" class="btn border-0 btn-outline-info">Edit <span class="fa fa-edit"></span></button>
+            <button type="button" class="btn border-0 btn-outline-danger">Delete <span class="fa fa-trash"></span></button>
+          </td>
+        </tr>
+      {% endfor %}
     </table>
   </div>
 </div>
